@@ -33,7 +33,7 @@ data "aws_region" "current" {}
 locals {
   name      = basename(path.cwd)
   namespace = "external-secrets"
-  region    = "us-west-2"
+  region    = "ap-south-1"
 
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
@@ -56,11 +56,11 @@ locals {
 module "eks_blueprints" {
   source = "../.."
 
-  cluster_name    = local.name
+  cluster_name    = "eks-test-1"
   cluster_version = "1.24"
 
-  vpc_id             = module.vpc.vpc_id
-  private_subnet_ids = module.vpc.private_subnets
+  vpc_id             = "vpc-0b0c9a6de79487c69"
+  private_subnet_ids = "subnet-04fd3048009d413d3"
 
   #----------------------------------------------------------------------------------------------------------#
   # Security groups used in this module created by the upstream modules terraform-aws-eks (https://github.com/terraform-aws-modules/terraform-aws-eks).

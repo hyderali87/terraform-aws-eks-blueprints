@@ -31,7 +31,7 @@ locals {
   name = basename(path.cwd)
   # var.cluster_name is for Terratest
   cluster_name = coalesce(var.cluster_name, local.name)
-  region       = "uap-south-1"
+  region       = "ap-south-1"
 
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
